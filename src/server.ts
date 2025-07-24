@@ -4,6 +4,7 @@ import accountRouter from "./routes/account.route";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { FRONTEND_URL, PORT } from "./core/configs/config";
+import documentRouter from "./routes/document.route";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cookieParser());
 app.use(cors({ origin: FRONTEND_URL, credentials: true }));
 
 app.use("/auth", accountRouter);
+app.use("/documents", documentRouter);
 
 app.use(errorHandler);
 
