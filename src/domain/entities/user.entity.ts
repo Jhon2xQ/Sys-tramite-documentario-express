@@ -3,4 +3,6 @@ export interface User {
   username: string;
   password: string;
   publicKey: string | null;
+  createdAt: Date;
+  updatedAt: Date;
 }
