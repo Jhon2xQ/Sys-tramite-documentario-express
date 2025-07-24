@@ -1,16 +1,17 @@
 import express from "express";
-import productoRouter from "./routes/producto.route";
 import errorHandler from "./core/middlewares/error.handler.middleware";
 import accountRouter from "./routes/account.route";
 import cookieParser from "cookie-parser";
-import { PORT } from "./core/configs/config";
+import cors from "cors";
+import { FRONTEND_URL, PORT } from "./core/configs/config";
 
 const app = express();
+
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({ origin: FRONTEND_URL, credentials: true }));
 
-app.use("/", accountRouter);
-app.use("/productos", productoRouter);
+app.use("/auth", accountRouter);
 
 app.use(errorHandler);
 
