@@ -14,18 +14,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//---Producto-model
-model Producto{
-  id Int @id @default(autoincrement())
-  name String @unique
-  price Float? @default(0.0)
-  stock Int? @default(0)
-}
-
 model User {
   id Int @id @default(autoincrement())
-  lastName String
-  firstName String
-  email String @unique
-  password String
+  username String @unique
+  password String 
+  publicKey String? @unique
 }

@@ -1,17 +1,8 @@
-export interface CreateUserDTO {
-  lastName: string;
-  firstName: string;
-  email: string;
-  password: string;
-}
-
-export interface LoginUserDto {
-  email: string;
+export interface LoginUserDTO {
+  username: string;
   password: string;
 }
 
 export interface PublicUserDTO {
-  lastName: string;
-  firstName: String;
-  email: string;
+  username: string;
 }
