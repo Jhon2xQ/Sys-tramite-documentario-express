@@ -1,9 +1,9 @@
 import { Router } from "express";
-import container from "../core/IoC/ioc.config";
-import { DocumentController } from "../presentation/controllers/document.controller";
-import { TYPES } from "../core/IoC/ioc.types";
-import asyncHandler from "../core/middlewares/async.handler.middleware";
-import { handleMultipleFiles } from "../core/middlewares/file-upload.handler.middleware";
+import container from "../core/IoC/ioc.config.js";
+import { DocumentController } from "../presentation/controllers/document.controller.js";
+import { TYPES } from "../core/IoC/ioc.types.js";
+import asyncHandler from "../core/middlewares/async.handler.middleware.js";
+import { handleMultipleFiles } from "../core/middlewares/file-upload.handler.middleware.js";
 
 const documentRouter = Router();
 

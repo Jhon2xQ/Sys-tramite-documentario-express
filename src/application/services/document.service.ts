@@ -1,12 +1,16 @@
 import { injectable } from "inversify";
-import { DocumentRepository } from "../../infraestructure/persistence/document.repository";
-import { CreateDocumentDTO, DocumentDTO, PublicDocumentDTO } from "../dtos/document.dto";
 import { inject } from "inversify";
-import { TYPES } from "../../core/IoC/ioc.types";
+import { TYPES } from "../../core/IoC/ioc.types.js";
+import { CreateDocumentDTO, PublicDocumentDTO } from "../dtos/document.dto.js";
+import { DocumentRepository } from "../../infraestructure/persistence/document.repository.js";
+import { IpfsService } from "../../infraestructure/services/ipfs.service.js";
 
 @injectable()
 export default class DocumentService {
-  constructor(@inject(TYPES.DocumentRepository) private documentRepository: DocumentRepository) {}
+  constructor(
+    @inject(TYPES.DocumentRepository) private documentRepository: DocumentRepository,
+    @inject(TYPES.IpfsService) private ipfsService: IpfsService
+  ) {}
 
   async getByHash(ihash: string): Promise<PublicDocumentDTO | null> {
     const foundDocument = await this.documentRepository.getByHash(ihash);
@@ -24,7 +28,7 @@ export default class DocumentService {
   async saveDocuments(documents: Express.Multer.File[]): Promise<void> {
     for (const document of documents) {
       const { originalname, size, mimetype, buffer } = document;
-      const hash = "abc"; //integracion con ipfs
+      const hash = await this.ipfsService.addFile(buffer);
       await this.createDocument({ hash, originalname, mimetype, size });
     }
   }

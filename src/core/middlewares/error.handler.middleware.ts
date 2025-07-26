@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import CustomError from "../exceptions/custom.error";
-import CustomResponse from "../exceptions/custom.response";
-import PlainDto from "../exceptions/plain.dto";
-import ResponseErrorDto from "../exceptions/response.error.dto";
+import CustomError from "../exceptions/custom.error.js";
+import CustomResponse from "../exceptions/custom.response.js";
+import PlainDto from "../exceptions/plain.dto.js";
+import ResponseErrorDto from "../exceptions/response.error.dto.js";
 
 export default function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
   if (!(err instanceof CustomError)) {

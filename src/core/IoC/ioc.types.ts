@@ -6,4 +6,6 @@ export const TYPES = {
   DocumentRepository: Symbol.for("DocumentRepository"),
   DocumentService: Symbol.for("DocumentService"),
   DocumentController: Symbol.for("DocumentController"),
+
+  IpfsService: Symbol.for("IpfsService"),
 };

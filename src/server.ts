@@ -1,10 +1,10 @@
 import express from "express";
-import errorHandler from "./core/middlewares/error.handler.middleware";
-import accountRouter from "./routes/account.route";
+import errorHandler from "./core/middlewares/error.handler.middleware.js";
+import accountRouter from "./routes/account.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { FRONTEND_URL, PORT } from "./core/configs/config";
-import documentRouter from "./routes/document.route";
+import { FRONTEND_URL, PORT } from "./core/configs/config.js";
+import documentRouter from "./routes/document.route.js";
 
 const app = express();
 

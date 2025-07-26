@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import CustomError from "../../core/exceptions/custom.error";
-import AccountService from "../../application/services/account.service";
+import CustomError from "../../core/exceptions/custom.error.js";
+import AccountService from "../../application/services/account.service.js";
 import { injectable, inject } from "inversify";
-import { TYPES } from "../../core/IoC/ioc.types";
-import { COOKIE_TTL } from "../../core/configs/config";
+import { TYPES } from "../../core/IoC/ioc.types.js";
+import { COOKIE_TTL } from "../../core/configs/config.js";
 
 @injectable()
 export class AccountController {

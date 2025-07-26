@@ -1,5 +1,5 @@
-import { CreateDocumentDTO } from "../../application/dtos/document.dto";
-import { Document } from "../entities/document.entity";
+import { CreateDocumentDTO } from "../../application/dtos/document.dto.js";
+import { Document } from "../entities/document.entity.js";
 
 export interface IDocumentRepository {
   getByHash(hash: string): Promise<Document | null>;

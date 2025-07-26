@@ -1,8 +1,8 @@
 import { injectable } from "inversify";
-import { CreateDocumentDTO } from "../../application/dtos/document.dto";
-import { prisma } from "../../core/configs/prisma";
-import { Document } from "../../domain/entities/document.entity";
-import { IDocumentRepository } from "../../domain/repositories/iDocument.repository";
+import { CreateDocumentDTO } from "../../application/dtos/document.dto.js";
+import { prisma } from "../../core/configs/prisma.js";
+import { Document } from "../../domain/entities/document.entity.js";
+import { IDocumentRepository } from "../../domain/repositories/iDocument.repository.js";
 
 @injectable()
 export class DocumentRepository implements IDocumentRepository {

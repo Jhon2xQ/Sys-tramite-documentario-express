@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import DocumentService from "../../application/services/document.service";
-import CustomError from "../../core/exceptions/custom.error";
+import DocumentService from "../../application/services/document.service.js";
+import CustomError from "../../core/exceptions/custom.error.js";
 import { injectable } from "inversify";
 import { inject } from "inversify";
-import { TYPES } from "../../core/IoC/ioc.types";
+import { TYPES } from "../../core/IoC/ioc.types.js";
 
 @injectable()
 export class DocumentController {
