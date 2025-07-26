@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import { DocumentRepository } from "../../infraestructure/persistence/document.repository";
-import { CreateDocumentDTO, PublicDocumentDTO } from "../dtos/document.dto";
+import { CreateDocumentDTO, DocumentDTO, PublicDocumentDTO } from "../dtos/document.dto";
 import { inject } from "inversify";
 import { TYPES } from "../../core/IoC/ioc.types";
 
@@ -11,13 +11,21 @@ export default class DocumentService {
   async getByHash(ihash: string): Promise<PublicDocumentDTO | null> {
     const foundDocument = await this.documentRepository.getByHash(ihash);
     if (!foundDocument) return null;
-    const { hash, name, mimeType } = foundDocument;
-    return { hash, name, mimeType };
+    const { hash, originalname, mimetype, size } = foundDocument;
+    return { hash, originalname, mimetype, size };
   }
 
   async createDocument(document: CreateDocumentDTO): Promise<PublicDocumentDTO> {
     const createdDocument = await this.documentRepository.create(document);
-    const { hash, name, mimeType } = createdDocument;
-    return { hash, name, mimeType };
+    const { hash, originalname, mimetype, size } = createdDocument;
+    return { hash, originalname, mimetype, size };
+  }
+
+  async saveDocuments(documents: Express.Multer.File[]): Promise<void> {
+    for (const document of documents) {
+      const { originalname, size, mimetype, buffer } = document;
+      const hash = "abc"; //integracion con ipfs
+      await this.createDocument({ hash, originalname, mimetype, size });
+    }
   }
 }

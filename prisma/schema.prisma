@@ -26,8 +26,9 @@ model User {
 model Document {
   id Int @id @default(autoincrement())
   hash String @unique
-  name String
-  mimeType String
+  originalname String
+  mimetype String
+  size Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

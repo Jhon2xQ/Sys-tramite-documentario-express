@@ -18,12 +18,12 @@ export class DocumentController {
     });
   };
 
-  createDocument = async (req: Request, res: Response): Promise<Response<unknown>> => {
-    const createdDocument = await this.documentService.createDocument(req.body);
+  saveDocuments = async (req: Request, res: Response): Promise<Response<unknown>> => {
+    const archivos = req.files as Express.Multer.File[];
+    await this.documentService.saveDocuments(archivos);
     return res.status(200).json({
       success: true,
-      message: "documento creado con exito",
-      data: createdDocument,
+      message: "Archivos recibidos correctamente.",
     });
   };
 }
