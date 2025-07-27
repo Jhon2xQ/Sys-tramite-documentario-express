@@ -1,7 +1,9 @@
 {
   "name": "firstapi",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
+    "generate": "prisma generate",
     "dev": "tsx --watch src/server.ts"
   },
   "keywords": [],
@@ -15,6 +17,7 @@
     "@types/express": "^5.0.3",
     "@types/inversify": "^2.0.32",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
     "@types/node": "^24.0.1",
     "prisma": "^6.9.0",
     "tsx": "^4.20.3",
@@ -29,6 +32,8 @@
     "express": "^5.1.0",
     "inversify": "^7.5.2",
     "joi": "^17.13.3",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "kubo-rpc-client": "^5.2.0",
+    "multer": "^2.0.2"
   }
 }

@@ -1,9 +1,9 @@
 import { injectable, inject } from "inversify";
-import { sign } from "jsonwebtoken";
-import { TYPES } from "../../core/IoC/ioc.types";
-import { USER_TOKEN_TTL, JWT_SECRET_KEY } from "../../core/configs/config";
-import { UserRepository } from "../../infraestructure/persistence/user.repository";
-import { LoginUserDTO, PublicUserDTO } from "../dtos/user.dto";
+import jsonwebtoken from "jsonwebtoken";
+import { TYPES } from "../../core/IoC/ioc.types.js";
+import { USER_TOKEN_TTL, JWT_SECRET_KEY } from "../../core/configs/config.js";
+import { UserRepository } from "../../infraestructure/persistence/user.repository.js";
+import { LoginUserDTO, PublicUserDTO } from "../dtos/user.dto.js";
 import bcrypt from "bcrypt";
 
 @injectable()
@@ -27,6 +27,6 @@ export default class AccountService {
   }
 
   generateToken(user: PublicUserDTO): string {
-    return sign(user, JWT_SECRET_KEY, { expiresIn: USER_TOKEN_TTL });
+    return jsonwebtoken.sign(user, JWT_SECRET_KEY, { expiresIn: USER_TOKEN_TTL });
   }
 }

@@ -22,3 +22,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Document {
+  id Int @id @default(autoincrement())
+  hash String @unique
+  originalname String
+  mimetype String
+  size Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

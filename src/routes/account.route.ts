@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { AccountController } from "../presentation/controllers/account.controller";
-import asyncHandler from "../core/middlewares/async.handler.middleware";
-import { validate } from "../core/middlewares/validation.middleware";
-import { userLoginSchema } from "../presentation/schemas/account.schema";
-import { verifyToken } from "../core/middlewares/account.middleware";
-import container from "../core/IoC/ioc.config";
-import { TYPES } from "../core/IoC/ioc.types";
+import { AccountController } from "../presentation/controllers/account.controller.js";
+import asyncHandler from "../core/middlewares/async.handler.middleware.js";
+import { validate } from "../core/middlewares/validation.middleware.js";
+import { userLoginSchema } from "../presentation/schemas/account.schema.js";
+import { verifyToken } from "../core/middlewares/account.middleware.js";
+import container from "../core/IoC/ioc.config.js";
+import { TYPES } from "../core/IoC/ioc.types.js";
 
 const accountRouter = Router();
 
