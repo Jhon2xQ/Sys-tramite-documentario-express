@@ -3,7 +3,8 @@ dotenv.config();
 
 export const PORT = process.env.PORT || 3000;
 export const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
-export const IPFS_API_URL = process.env.IPFS_API_URL || "http://localhost:9094";
+export const IPFS_CLUSTER_API_URL = process.env.IPFS_CLUSTER_API_URL || "http://127.0.0.1:9094";
+export const IPFS_KUBO_GATEWAY_URL = process.env.IPFS_KUBO_GATEWAY_URL || "http://localhost:8080/ipfs/";
 
 export const COOKIE_TTL = 20 * 60 * 60 * 1000; // (in milisecond) (20 hours)
 export const USER_TOKEN_TTL = 20 * 60 * 60; // (in second) (20 hours)

@@ -9,7 +9,7 @@ const documentRouter = Router();
 
 const documentController = container.get<DocumentController>(TYPES.DocumentController);
 
-documentRouter.get("/:hash", asyncHandler(documentController.getDocument));
+documentRouter.get("/:id", asyncHandler(documentController.getDocument));
 documentRouter.post("/", handleMultipleFiles("archivos"), asyncHandler(documentController.saveDocuments));
 
 export default documentRouter;

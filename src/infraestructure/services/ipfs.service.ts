@@ -1,15 +1,10 @@
 import { injectable } from "inversify";
-import { IPFS_API_URL } from "../../core/configs/config.js";
-
-interface IpfsAddResult {
-  name: string;
-  cid: string;
-  size: string; // La API devuelve el tamaño como un string
-}
+import { IpfsAddResult } from "../../application/dtos/ipfs-result.dto.js";
+import { IPFS_CLUSTER_API_URL } from "../../core/configs/config.js";
 
 @injectable()
 export class IpfsService {
-  constructor(private clusterApiUrl: string = IPFS_API_URL) {}
+  constructor(private clusterApiUrl: string = IPFS_CLUSTER_API_URL) {}
 
   public async addFile(fileBuffer: Buffer): Promise<string> {
     const formData = new FormData();
@@ -26,12 +21,7 @@ export class IpfsService {
         throw new Error(`Error del clúster (${response.status}): ${errorText}`);
       }
 
-      // 2. Le decimos a TypeScript que el resultado de response.json() debe ser del tipo IpfsAddResult.
-      //    Usamos "as" para hacer una aserción de tipo, ya que estamos seguros de la estructura.
       const result = (await response.json()) as IpfsAddResult;
-
-      // 3. Ahora TypeScript sabe que result tiene una propiedad 'cid' de tipo string.
-      //    El error desaparece y nuestro código es más seguro.
       return result.cid;
     } catch (error) {
       console.error("Error al intentar añadir el archivo a IPFS Cluster vía API REST:", error);

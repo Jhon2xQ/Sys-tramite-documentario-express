@@ -17,5 +17,5 @@ export interface PublicDocumentDTO {
   originalname: string;
   mimetype: string;
   size: number;
-  //viewLink: string;
+  viewlink: string;
 }
