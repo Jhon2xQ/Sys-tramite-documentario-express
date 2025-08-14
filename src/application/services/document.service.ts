@@ -29,12 +29,20 @@ export default class DocumentService {
     return { hash, originalname, mimetype, size, viewlink };
   }
 
-  async saveDocuments(documents: Express.Multer.File[]): Promise<void> {
+  async saveDocument(document: Express.Multer.File): Promise<string> {
+    const { originalname, size, mimetype, buffer } = document;
+    const hash = await this.ipfsService.addFile(buffer);
+    const success = await this.documentRepository.existByHash(hash);
+    if (!success) await this.documentRepository.create({ hash, originalname, mimetype, size });
+    return hash;
+  }
+
+  async saveDocuments(documents: Express.Multer.File[]): Promise<string[]> {
+    const documentsHash: string[] = [];
     for (const document of documents) {
-      const { originalname, size, mimetype, buffer } = document;
-      const hash = await this.ipfsService.addFile(buffer);
-      const success = await this.documentRepository.existByHash(hash);
-      if (!success) await this.documentRepository.create({ hash, originalname, mimetype, size });
+      const hash = await this.saveDocument(document);
+      documentsHash.push(hash);
     }
+    return documentsHash;
   }
 }

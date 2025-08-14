@@ -2,55 +2,14 @@ import { Contract, TransactionReceipt } from "ethers";
 import { TRAMITE_CONTRACT } from "../../core/configs/contract.js";
 import { Tramite, Movimiento } from "../../application/dtos/contract.dto.js";
 
-export default class TramiteService {
+export default class ContractService {
   constructor(private contract: Contract = TRAMITE_CONTRACT) {}
-
-  /**
-   * Obtiene los datos de un trámite por su ID.
-   * @param idTramite El ID del trámite a buscar.
-   * @returns Una promesa que resuelve a un objeto Tramite.
-   */
-  async getTramite(idTramite: number): Promise<Tramite> {
-    try {
-      const tramiteData = await this.contract.getTramite(idTramite);
-      return {
-        creador: tramiteData.creador,
-        tipoTramite: tramiteData.tipoTramite.toString(),
-        seguimiento: tramiteData.seguimiento.map((id: any) => id.toString()),
-      };
-    } catch (error: any) {
-      console.error(`Error en getTramite(${idTramite}):`, error.message);
-      throw new Error("No se pudo obtener el trámite desde el contrato.");
-    }
-  }
-
-  /**
-   * Obtiene el historial completo de movimientos de un trámite.
-   * @param idTramite El ID del trámite.
-   * @returns Una promesa que resuelve a un array de Movimientos.
-   */
-  async getHistorial(idTramite: number): Promise<Movimiento[]> {
-    try {
-      const historialData = await this.contract.getHistorial(idTramite);
-      return historialData.map((mov: any) => ({
-        emisor: mov.emisor,
-        receptor: mov.receptor,
-        timestamp: new Date(Number(mov.timestamp) * 1000).toISOString(),
-        documentos: mov.documentos.map((docId: any) => docId.toString()),
-      }));
-    } catch (error: any) {
-      console.error(`Error en getHistorial(${idTramite}):`, error.message);
-      throw new Error("No se pudo obtener el historial del trámite.");
-    }
-  }
-
-  // --- MÉTODOS DE ESCRITURA (TRANSACCIONES) ---
 
   /**
    * Crea un nuevo trámite.
    * @param tipoTramite El tipo de trámite a crear.
-   * @param receptor La dirección del destinatario inicial.
-   * @param documentos Un array de IDs de documentos.
+   * @param receptor La dirección del destinatario.
+   * @param documentos Un array de Hash de documentos
    * @returns Una promesa que resuelve al recibo de la transacción.
    */
   async crearTramite(tipoTramite: number, receptor: string, documentos: number[]): Promise<TransactionReceipt | null> {
@@ -101,6 +60,3 @@ export default class TramiteService {
     }
   }
 }
-/* 
-// Patrón Singleton: Exportamos una única instancia de la clase para ser usada en toda la app.
-export const tramiteService = new TramiteService(); */
