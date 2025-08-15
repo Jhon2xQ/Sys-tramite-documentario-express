@@ -9,3 +9,7 @@ export const IPFS_KUBO_GATEWAY_URL = process.env.IPFS_KUBO_GATEWAY_URL || "http:
 export const COOKIE_TTL = 20 * 60 * 60 * 1000; // (in milisecond) (20 hours)
 export const USER_TOKEN_TTL = 20 * 60 * 60; // (in second) (20 hours)
 export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "secret";
+
+export const SEPOLIA_RPC = process.env.SEPOLIA_RPC;
+export const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS as string;
+export const PRIVATE_KEY = process.env.PRIVATE_KEY as string;
